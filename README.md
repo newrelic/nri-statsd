@@ -8,7 +8,7 @@ Once your metrics are in New Relic, you can query your data and create custom ch
 
 ## Installation
 
-> To install the StatsD integration, run the container with this command, inserting your account ID and Insert API key:
+> To install the StatsD integration, run the container with this command, inserting your account ID and API key:
 ```bash
 docker run \
   -d --restart unless-stopped \
