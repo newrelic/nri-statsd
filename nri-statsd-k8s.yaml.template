@@ -1,0 +1,96 @@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newrelic-statsd
+  labels:
+    app: newrelic-statsd
+spec:
+  selector:
+    matchLabels:
+      app: newrelic-statsd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: newrelic-statsd
+    spec:
+      containers:
+      - name: newrelic-statsd
+        image: newrelic/nri-statsd:latest
+        # env:
+        # - name: NR_ACCOUNT_ID
+        #   value: <your New Relic account id>
+        # - name: NR_API_KEY
+        #   value: <your New Relic API key>
+        # you can also use a secret to set the value of the environment variable
+        # env:
+        # - name: NR_API_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: nr-api-secret
+        #       key: api-key
+        # - name: NR_API_KEY
+        #   value: <your New Relic API key>
+        volumeMounts:
+          - mountPath: /etc/opt/newrelic/
+            name: nri-statsd-config
+      volumes:
+        - name: nri-statsd-config
+          configMap:
+            name: nri-statsd-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: newrelic-statsd
+  labels:
+    app: newrelic-statsd
+  annotations:
+spec:
+  type: ClusterIP
+  ports:
+  - name: newrelic-statsd
+    port: 8125
+    targetPort: 8125
+    protocol: UDP
+  selector:
+    app: newrelic-statsd
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nri-statsd-config
+  namespace: default
+data:
+  nri-statsd.toml: |
+    # using a file mounted on the container(s) will ignore any enviroment variable like NR_ACCOUNT_ID
+    # or NR_API_KEY. These value must be set directly on the file (configMap)
+    # You can also just use the configMap to configure the server and use env vars to set the New Relic API key
+    # and optionally the New Relic account id
+
+    backends='newrelic'
+    flush-interval='10s'
+    statser-type='null'
+    log-raw-metric='true'
+
+    [newrelic]
+    # flush types supported: metrics,  insights, infra
+    flush-type = "metrics"
+    transport = "default"
+    address = "https://collector.newrelic.com/v1/accounts/<your New ReLic account id>/events"
+    address-metrics = "https://metric-api.newrelic.com/metric/v1"
+    api-key = '<your new New Relic API key>'
+---
+# declare a secret with the NR API key
+# the secret can (should) be created outside of this manifest
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: nr-api-secret
+# type: Opaque
+# data:
+#   key: <your base64-encoded New Relic API key>
+# stringData:
+#   api-key: <you New Relic API key>
