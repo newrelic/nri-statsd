@@ -1,0 +1,117 @@
+# Backends Space separated list of backends
+backends='newrelic'
+#CloudProvider If set, use the cloud provider to retrieve metadata about the sende.
+# cloud-provider='''
+# MaxCloudRequests Maximum number of cloud provider requests per second
+# max-cloud-requests=10
+# BurstCloudRequests Burst number of cloud provider requests per second
+# burst-cloud-requests=15
+# DefaultTags Space separated list of tags to add to all metrics
+# default-tags=''
+# InternalTags Space separated list of tags to add to internal metrics
+# internal-tags=''
+# InternalNamespace Namespace for internal metrics
+# internal-namespace='statsd'
+# ExpiryInterval After how long do we expire metrics (0 to disable).
+# expiry-interval='5m'
+# FlushInterval How often to flush metrics to the backends.
+# flush-interval='1s'
+# IgnoreHost Ignore the source for populating the hostname field of metrics
+# ignore-host=false
+# MaxReaders Maximum number of socket readers. Minimun between 8 and number of cpu's
+# max-readers=
+# MaxParsers Maximum number of workers to parse datagrams into metrics. Default equal to number of cpu's
+# max-parsers=
+# MaxWorkers Maximum number of workers to process metrics. Default equal to number of cpu's
+# max-workers=
+# MaxQueueSize Maximum number of buffered metrics per worker.
+# max-queue-size=10000
+# MaxConcurrentEvents Maximum number of events sent concurrently.
+# max-concurrent-events=1024
+# EstimatedTags Estimated number of expected tags on an individual metric submitted externally
+# estimated-tags=4
+# CacheRefreshPeriod Cloud cache refresh period
+# cloud-cache-refresh-period='1m'
+# CacheEvictAfterIdlePeriod Idle cloud cache eviction period
+# cloud-cache-evict-after-idle-period='10mn'
+# CacheTTL Cloud cache TTL for successful lookups
+# cloud-cache-ttl='30m'
+# CacheNegativeTTL Cloud cache TTL for failed lookups (errors or when instance was not found)
+# cloud-cache-negative-ttl='1mn'
+# MetricsAddr Address on which to listen for metrics
+# metrics-addr=':8125'
+# Namespace Namespace for all metrics
+# namespace=''
+# StatserType Statser type to be used for sending metrics. Set to 'null' to disable internal metrics
+# statser-type='internal'
+# PercentThreshold Space separated list of applied percentiles.
+# percent-threshold=''
+# HeartbeatEnabled Enables heartbeat
+# heartbeat-enabled='true'
+# ReceiveBatchSize The number of datagrams to read in each receive batch
+# receive-batch-size=50
+# ConnPerReader Create a separate connection per reader (requires system support for reusing addresses)
+# conn-per-reader='false'
+# BadLineRateLimitPerMinute How many bad lines can be logged per minute
+# bad-lines-per-minute=0
+# ServerMode The server mode to run in
+# server-mode='standalone'
+# Hostname Override hostname
+# hostname=''
+# TimerHistogramLimit Upper limit of timer histogram buckets (MaxUint32 by default, effectively unlimited)
+# timer-histogram-limit=
+# LogRawMetric Print metrics received from network to stdout in JSON format
+# log-raw-metric='false'
+
+# By default, timer metrics will result in aggregated metrics of the form (exact name varies by backend):
+
+# <base>.Count
+# <base>.CountPerSecond
+# <base>.Mean
+# <base>.Median
+# <base>.Lower
+# <base>.Upper
+# <base>.StdDev
+# <base>.Sum
+# <base>.SumSquares
+
+# In addition, the following aggregated metrics will be emitted for each configured percentile:
+
+# <base>.Count_XX
+# <base>.Mean_XX
+# <base>.Sum_XX
+# <base>.SumSquares_XX
+# <base>.Upper_XX - for positive only
+# <base>.Lower_-XX - for negative only
+
+# These can be controlled through the disabled-sub-metrics configuration section
+# Uncomment below to disable all sub-metrics. 
+# You can also set to false only those that you want to send.
+
+# [disabled-sub-metrics]
+# # Regular metrics
+# count=true
+# count-per-second=true
+# mean=true
+# median=true
+# lower=true
+# upper=true
+# stddev=true
+# sum=true
+# sum-squares=true
+
+# # Percentile metrics
+# count-pct=true
+# mean-pct=true
+# sum-pct=true
+# sum-squares-pct=true
+# lower-pct=true
+# upper-pct=true
+
+[newrelic]
+# flush types supported: metrics,  insights, infra. if not defined will try to guess from the address used
+flush-type = 'metrics'
+transport = 'default'
+address-metrics = 'https://metric-api.newrelic.com/metric/v1'
+address: https://insights-collector.newrelic.com/v1/accounts/<your New Relic account id>/events
+api-key = '<your New Relic API key>'
