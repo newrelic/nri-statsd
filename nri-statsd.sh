@@ -48,10 +48,4 @@ CMD="${GO_STATSD_BIN} ${GO_STATSD_CFG} ${GO_STATSD_TAGS}"
 
 echo "---- Starting gostatsd: ${CMD} ----"
 
-echo "---- configuration file contents ----"
-
-cat ${NR_STATSD_CFG}
-
-echo "----------------------------------"
-
 eval "$CMD"
