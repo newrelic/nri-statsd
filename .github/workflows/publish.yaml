@@ -18,6 +18,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: newrelic/nri-statsd
           tags: latest
+          # tags the image using either the branch,lastest (if master) or the tag
+          # since we are only triggering when a release is done, it shoudl only publish with the tag + latest
           tag_with_ref: true
 
 
