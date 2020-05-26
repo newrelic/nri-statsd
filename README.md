@@ -7,7 +7,7 @@ Once your metrics are in New Relic, you can query your data and create custom ch
 
 ## Requirements
 
->The StatsD integration uses our Metric API and our Event API to ingest data. To send data to both APIs youneed a New Relic Insert API key. You can generate one at this URL (use your account ID):
+>The StatsD integration uses our Metric API and our Event API to ingest data. To send data to both APIs you need a New Relic Insert API key. You can generate one at this URL (use your account ID):
  
 https://insights.newrelic.com/accounts/YOUR_ACCOUNT_ID/manage/api_keys
 
@@ -82,7 +82,9 @@ docker run \
   newrelic/nri-statsd:latest
 ```
 
-| Configuration options   | Type             |      Description     |
+## Configuration parameters
+
+| Parameter               | Type             |      Description     |
 |-------------------------|------------------|----------------------|
 | expiry-interval         | string           |If a metric is not updated for this amount of time,<br>we stop reporting that metric. Default is 5m. If you<br>want to send the metrics only if the value was updated<br>between the flush intervals, configure this to 1ms.<br>To never expire metrics, set it to 0. |
 | percent-threshold       | list of integers | Specifies the percentiles used for metrics aggregation. Default: 90.
@@ -124,7 +126,7 @@ SELECT count(*) FROM Metric WHERE environment = 'production'
 ```
 
 ### 2. When running nri-statsd add default tags that apply to all metrics.<br>
-They are fixed and don't change over time. This can be done by using `TAGS` environment variable
+They are fixed, apply to all the metrics and don't change over time. This can be done by using `TAGS` environment variable
 ```bash
 docker run \
   ...
