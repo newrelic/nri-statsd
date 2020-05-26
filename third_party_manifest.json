@@ -1,0 +1,19 @@
+{
+  "lastUpdated": "Mon May 25 2020 15:09:27 GMT+0000 (Coordinated Universal Time)",
+  "projectName": "nri-statsd",
+  "projectUrl": "https://github.com/newrelic/nri-statsd",
+  "includeDev": true,
+  "dependencies": {
+    "gostatsd@20.3.2": {
+      "name": "gostatsd",
+      "version": "20.3.2",
+      "range": "^20.3.2",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/atlassian/gostatsd",
+      "versionedRepoUrl": "https://github.com/atlassian/gostatsd/tree/20.3.2",
+      "licenseFile": "LICENSE",
+      "licenseUrl": "https://github.com/atlassian/gostatsd/blob/20.3.2/LICENSE",
+      "licenseTextSource": "file"
+    }
+  }
+}
