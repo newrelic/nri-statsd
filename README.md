@@ -31,9 +31,22 @@ If your account is in the EU data center region, set the NR_EU_REGION environmen
 -e NR_EU_REGION=true \
 ```
 
+## Find and use data
+
+You can send some data using the following example:
+```bash 
+echo "prod.test.num:32|g" | nc -v -w 1 -u localhost 8125
+```
+
+To query your data, you'd use any New Relic [query option](https://docs.newrelic.com/docs/using-new-relic/data/understand-data/query-new-relic-data). For example, you might run a [NRQL](https://docs.newrelic.com/docs/query-data/nrql-new-relic-query-language/getting-started/introduction-nrql) query like:
+
+```bash
+SELECT latest(prod.test.num) FROM Metric WHERE metricName = 'prod.test.num'
+```
+
 ## Building
 
->You can build your own custom nri-statsd docker image by using the following command:
+You can build your own custom nri-statsd docker image by using the following command:
 
 ```bash
 docker build -t nri-statsd:$IMAGE_VERSION \
@@ -43,7 +56,7 @@ docker build -t nri-statsd:$IMAGE_VERSION \
 ## Configuration
 
 When you use the standard [instalation method](#Installation), a statsd config file will be automatically generated
-with the default recommended values. However if you want to customize your statsd configuration you can do that by
+with the default recommended values. However if you want to customize your statsd configuration you can do this by
 overwriting the default config file.
 
 Example:
@@ -175,15 +188,6 @@ spec:
   selector:
     app: newrelic-statsd
 ```
-
-<!-- ## Getting Started
->Simple steps to start working with the software similar to a "Hello World"
-
-## Usage - optional
->Include more thorough instructions on how to use the software. This section may not be needed if the Getting Started section is enough.
-
--->
-
 
 ## Support
 
