@@ -1,6 +1,6 @@
 [![Community Project header](https://github.com/newrelic/open-source-office/raw/master/examples/categories/images/Community_Project.png)](https://github.com/newrelic/open-source-office/blob/master/examples/categories/index.md#community-project)
 
-# StatsD Integration for New Relic Infrastructure
+# StatsD Integration for New Relic Infrastructure ![Publish container image](https://github.com/newrelic/nri-statsd/workflows/Publish%20container%20image/badge.svg)
 
 >StatsD integration lets you easily get StatsD - format data into New Relic. You can also add any arbitrary tags (key-value pairs) to your data.
 Once your metrics are in New Relic, you can query your data and create custom charts and dashboards.
