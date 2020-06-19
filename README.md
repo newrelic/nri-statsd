@@ -179,7 +179,6 @@ metadata:
   namespace: tooling
   labels:
     app: newrelic-statsd
-  annotations:
 spec:
   type: ClusterIP
   ports:
