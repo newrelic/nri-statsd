@@ -113,5 +113,5 @@ backends='newrelic'
 flush-type = 'metrics'
 transport = 'default'
 address-metrics = 'https://metric-api.newrelic.com/metric/v1'
-address: https://insights-collector.newrelic.com/v1/accounts/<your New Relic account id>/events
+address = 'https://insights-collector.newrelic.com/v1/accounts/<your New Relic account id>/events'
 api-key = '<your New Relic API key>'
