@@ -179,7 +179,6 @@ metadata:
   namespace: tooling
   labels:
     app: newrelic-statsd
-  annotations:
 spec:
   type: ClusterIP
   ports:
@@ -234,4 +233,5 @@ To all contributors, we thank you!  Without your contribution, this project woul
 
 ## License
 nri-statsd is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
-> nri-statsd also uses source code from third party libraries. Full details on which libraries are used and the terms under which they are licensed can be found in the third party notices document.]
+
+> nri-statsd also uses source code from third party libraries. Full details on which libraries are used and the terms under which they are licensed can be found in the third party notices document.
