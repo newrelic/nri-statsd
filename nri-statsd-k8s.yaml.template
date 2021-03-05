@@ -24,6 +24,9 @@ spec:
         #   value: <your New Relic account id>
         # - name: NR_API_KEY
         #   value: <your New Relic API key>
+        # you can set this to true in order to set the collector to FedRAMP compliant endpoints
+        # - name: NR_GOV_COLLECTOR
+        #   value: true
         # you can also use a secret to set the value of the environment variable
         # env:
         # - name: NR_API_KEY
