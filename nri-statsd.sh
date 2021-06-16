@@ -21,6 +21,10 @@ if [ ! -z "${HOSTNAME}" ]; then
     GO_STATSD_BIN="/bin/gostatsd --hostname ${HOSTNAME}"
 fi
 
+if [ -z "${NR_STATSD_METRICS_ADDR}" ]; then
+    NR_STATSD_METRICS_ADDR=":8125"
+fi
+
 # per FHS, host local software packages should be in /usr/local and their config files in /usr/local/etc
 # could be argued that gostatsd is an optional package and therefore be in /opt/{package} and config files in /etc/opt/{package}..
 # nevertheless, gostatsd binary is in /bin, but let's assume we are following fhs best pratices
@@ -37,6 +41,7 @@ EOF
   /bin/cat <<EOM >${NR_STATSD_CFG}
 
 backends='newrelic'
+metrics-addr="${NR_STATSD_METRICS_ADDR}"
 
 [newrelic]
 flush-type = "metrics"
