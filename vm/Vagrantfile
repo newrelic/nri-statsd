@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/hirsute64"
+  config.vm.define "nri-statsd-ubuntu-2104"
+  config.vm.hostname = "nri-statsd-ubuntu-2104"
+  config.vm.network "private_network", ip: "10.0.2.22"
+  config.vm.synced_folder "..", "/srv"
+  config.vm.network :forwarded_port, guest: 22, host: 4455
+  config.vm.provider :virtualbox do |v|
+      v.name = "nri-statsd-ubuntu-2104"
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+  config.vm.provision "fix-network", type: "shell" do |s|
+      s.path = "fix-network.sh"
+  end
+  config.vm.provision "statsd", type: "shell" do |s|
+    s.env = {NR_ACCOUNT_ID:ENV['NR_ACCOUNT_ID'], NR_API_KEY:ENV['NR_API_KEY'], NR_EU_REGION:ENV['NR_EU_REGION']}
+    s.path = "provision.sh"
+  end
+    config.vm.provision "run-test", type: "shell" do |s|
+      s.path = "../testing_statsd.sh"
+    end
+end
