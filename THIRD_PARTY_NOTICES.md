@@ -20,7 +20,7 @@ code, the source code can be found at [https://github.com/newrelic/nri-statsd](h
 
 ### gostatsd
 
-This product includes source derived from [gostatsd](https://github.com/atlassian/gostatsd) ([20.3.2](https://github.com/atlassian/gostatsd/tree/20.3.2)), distributed under the [MIT License](https://github.com/atlassian/gostatsd/blob/20.3.2/LICENSE):
+This product includes source derived from [gostatsd](https://github.com/atlassian/gostatsd) ([33.0.2](https://github.com/atlassian/gostatsd/tree/33.0.2)), distributed under the [MIT License](https://github.com/atlassian/gostatsd/blob/33.0.2/LICENSE):
 
 ```
 MIT License
