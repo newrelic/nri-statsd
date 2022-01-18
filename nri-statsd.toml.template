@@ -12,10 +12,22 @@ backends='newrelic'
 # internal-tags=''
 # InternalNamespace Namespace for internal metrics
 # internal-namespace='statsd'
-# ExpiryInterval After how long do we expire metrics (0 to disable).
+# ExpiryInterval After how long do we expire metrics (0 to disable, -1 for immediate)
 # expiry-interval='5m'
+# ExpiryIntervalCounter Interval before counters are expired, defaults to the value of expiry-interval
+# expiry-interval-counter=
+# ExpiryIntervalGauge Interval before gauge are expired, defaults to the value of expiry-interval
+# expiry-interval-gauge=
+# ExpiryIntervalSet Interval before interval are expired, defaults to the value of expiry-interval
+# expiry-interval-set=
+# ExpiryIntervalTimer Interval before timers are expired, defaults to the value of expiry-interval
+# expiry-interval-timer=
+# FlushAligned Whether or not the flush should be aligned. Setting this will flush at an exact time interval. E.g. with a 10s flush interval, if the service happens to be started at 12:47:13, then flushing will occur at 12:47:20, 12:47:30, etc. rather than 12:47:23, 12:47:33, etc.
+# flush-aligned=false
 # FlushInterval How often to flush metrics to the backends.
 # flush-interval='1s'
+# FlushOffset Offset for flush interval when flush alignment is enabled.
+# flush-offset=
 # IgnoreHost Ignore the source for populating the hostname field of metrics
 # ignore-host=false
 # MaxReaders Maximum number of socket readers. Minimun between 8 and number of cpu's
