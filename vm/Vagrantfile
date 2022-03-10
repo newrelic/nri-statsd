@@ -2,9 +2,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/hirsute64"
   config.vm.define "nri-statsd-ubuntu-2104"
   config.vm.hostname = "nri-statsd-ubuntu-2104"
-  config.vm.network "private_network", ip: "10.0.2.22"
   config.vm.synced_folder "..", "/srv"
-  config.vm.network :forwarded_port, guest: 22, host: 4455
   config.vm.provider :virtualbox do |v|
       v.name = "nri-statsd-ubuntu-2104"
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]

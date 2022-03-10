@@ -1,8 +1,9 @@
 #!/bin/sh
 
-NR_INSIGHTS_COLLECTOR="insights-collector"
+# Use environment variables to override the endpoints sub domains
+NR_INSIGHTS_COLLECTOR="${NR_INSIGHTS_COLLECTOR:-insights-collector}"
 NR_INSIGHTS_DOMAIN="newrelic.com"
-NR_METRICS_COLLECTOR="metric-api"
+NR_METRICS_COLLECTOR="${NR_METRICS_COLLECTOR:-metric-api}"
 NR_METRICS_DOMAIN="newrelic.com"
 
 if [ ! -z "${NR_EU_REGION}" ]; then
