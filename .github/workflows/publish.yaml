@@ -3,7 +3,10 @@ name: Publish container image
 # run this workflow when we create a new releases
 on: 
   release:
-    type: [published]
+    types:
+      - released
+    tags:
+      - '*'
 
 jobs:
   push_to_registry:
