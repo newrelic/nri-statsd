@@ -53,6 +53,13 @@ api-key = "${NR_API_KEY}"
 EOM
 fi
 
+#Capture SIGTERM and pass it to gostatsd
+_term() {
+  kill -TERM "$pid" 2>/dev/null
+  wait "$pid"
+}
+trap _term SIGTERM
+
 GO_STATSD_CFG="--config-path ${NR_STATSD_CFG}"
 
 GO_STATSD_TAGS="--default-tags \"hostname:${HOSTNAME} ${TAGS}\""
@@ -61,4 +68,8 @@ CMD="${GO_STATSD_BIN} ${GO_STATSD_CFG} ${GO_STATSD_TAGS}"
 
 echo "---- Starting gostatsd: ${CMD} ----"
 
-eval "$CMD"
+$CMD &
+
+#get the process ID of the most recently executed background pipeline and wait until it's completed
+pid=$!
+wait "$pid"
