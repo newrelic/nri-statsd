@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -eo pipefail
+
 # Use environment variables to override the endpoints sub domains
 NR_INSIGHTS_COLLECTOR="${NR_INSIGHTS_COLLECTOR:-insights-collector}"
 NR_INSIGHTS_DOMAIN="newrelic.com"
@@ -29,7 +31,7 @@ fi
 # per FHS, host local software packages should be in /usr/local and their config files in /usr/local/etc
 # could be argued that gostatsd is an optional package and therefore be in /opt/{package} and config files in /etc/opt/{package}..
 # nevertheless, gostatsd binary is in /bin, but let's assume we are following fhs best pratices
-NR_STATSD_CFG=/etc/opt/newrelic/nri-statsd.toml
+export NR_STATSD_CFG=/etc/opt/newrelic/nri-statsd.toml
 
 if [ ! -f "${NR_STATSD_CFG}" ]; then
   /bin/cat <<EOF
@@ -38,7 +40,7 @@ make sure you have provided the required NR_API_KEY and optionally
 NR_ACCOUNT_ID if using Insights events, via environment variables.
 EOF
 
-  NR_STATSD_CFG=/tmp/nri-statsd.toml
+  export NR_STATSD_CFG=/tmp/nri-statsd.toml
   /bin/cat <<EOM >${NR_STATSD_CFG}
 
 backends='newrelic'
@@ -53,23 +55,4 @@ api-key = "${NR_API_KEY}"
 EOM
 fi
 
-#Capture SIGTERM and pass it to gostatsd
-_term() {
-  kill -TERM "$pid" 2>/dev/null
-  wait "$pid"
-}
-trap _term SIGTERM
-
-GO_STATSD_CFG="--config-path ${NR_STATSD_CFG}"
-
-GO_STATSD_TAGS="--default-tags \"hostname:${HOSTNAME} ${TAGS}\""
-
-CMD="${GO_STATSD_BIN} ${GO_STATSD_CFG} ${GO_STATSD_TAGS}"
-
-echo "---- Starting gostatsd: ${CMD} ----"
-
-$CMD &
-
-#get the process ID of the most recently executed background pipeline and wait until it's completed
-pid=$!
-wait "$pid"
+exec ./run-statsd.sh
