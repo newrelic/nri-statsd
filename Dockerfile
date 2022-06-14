@@ -1,4 +1,4 @@
-ARG GOSTATSD_TAG=34.2.1
+ARG GOSTATSD_TAG=35.0.0
 
 FROM atlassianlabs/gostatsd:$GOSTATSD_TAG
 
