@@ -21,6 +21,15 @@ docker build -t nri-statsd:$IMAGE_VERSION \
 .
 ```
 
+## Running tests
+```bash
+# for amd64 docker image
+make integration-tests-amd64
+
+# for arm64 docker image
+make integration-tests-amd64
+```
+
 ## Support
 
 Should you need assistance with New Relic products, you are in good hands with several support diagnostic tools and support channels.
