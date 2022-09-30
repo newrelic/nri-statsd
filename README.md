@@ -27,7 +27,7 @@ docker build -t nri-statsd:$IMAGE_VERSION \
 make integration-tests-amd64
 
 # for arm64 docker image
-make integration-tests-amd64
+make integration-tests-arm64
 ```
 
 ## Support
