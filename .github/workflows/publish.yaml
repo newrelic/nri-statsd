@@ -8,6 +8,10 @@ on:
     tags:
       - '*'
 
+env:
+  BASE_IMAGE_TAG: 3.16
+  GOSTATSD_TAG: 35.0.0
+
 jobs:
   push_to_registry:
     runs-on: ubuntu-latest
@@ -31,10 +35,11 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }}
+            GOSTATSD_TAG=${{ env.GOSTATSD_TAG: 35.0.0 }}
           context: .
           push: true
           tags: |
             newrelic/nri-statsd:latest
             newrelic/nri-statsd:${{ github.event.release.tag_name }}
-
-

@@ -1,0 +1,40 @@
+name: 🚧 integration tests
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - README.md
+
+env:
+  BASE_IMAGE_TAG: 3.15
+  GOSTATSD_TAG: 34.2.1
+
+jobs:
+  test:
+    name: Integration tests
+    # Use macos runner to be able to run different docker images architectures.
+    runs-on: macos-12
+    strategy:
+      matrix:
+        arch: [ amd64, arm64 ]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install docker
+        run: |
+          brew install docker colima
+          colima start
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.OHAI_DOCKER_HUB_ID }}
+          password: ${{ secrets.OHAI_DOCKER_HUB_PASSWORD }}
+
+      - name: Running integration tests
+        run: |
+          make integration-tests-${{ matrix.arch }} BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }} GOSTATSD_TAG=${{ env.GOSTATSD_TAG }}

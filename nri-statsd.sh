@@ -28,6 +28,14 @@ if [ -z "${NR_STATSD_METRICS_ADDR}" ]; then
     NR_STATSD_METRICS_ADDR=":8125"
 fi
 
+if [ -z "${NR_ENDPOINT_ADDR}" ]; then
+    NR_ENDPOINT_ADDR="https://${NR_INSIGHTS_COLLECTOR}.${NR_INSIGHTS_DOMAIN}/v1/accounts/${NR_ACCOUNT_ID}/events"
+fi
+
+if [ -z "${NR_ENDPOINT_METRICS_ADDR}" ]; then
+    NR_ENDPOINT_METRICS_ADDR="https://${NR_METRICS_COLLECTOR}.${NR_METRICS_DOMAIN}/metric/v1"
+fi
+
 # per FHS, host local software packages should be in /usr/local and their config files in /usr/local/etc
 # could be argued that gostatsd is an optional package and therefore be in /opt/{package} and config files in /etc/opt/{package}..
 # nevertheless, gostatsd binary is in /bin, but let's assume we are following fhs best pratices
@@ -49,8 +57,8 @@ metrics-addr="${NR_STATSD_METRICS_ADDR}"
 [newrelic]
 flush-type = "metrics"
 transport = "default"
-address = "https://${NR_INSIGHTS_COLLECTOR}.${NR_INSIGHTS_DOMAIN}/v1/accounts/${NR_ACCOUNT_ID}/events"
-address-metrics = "https://${NR_METRICS_COLLECTOR}.${NR_METRICS_DOMAIN}/metric/v1"
+address = "${NR_ENDPOINT_ADDR}"
+address-metrics = "${NR_ENDPOINT_METRICS_ADDR}"
 api-key = "${NR_API_KEY}"
 EOM
 fi
