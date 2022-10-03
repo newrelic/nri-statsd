@@ -1,4 +1,4 @@
-name: 🕵🏼 Trivy
+name: 🕵🏼 Security scan
 
 on:
   push:
@@ -12,10 +12,11 @@ on:
 env:
   BASE_IMAGE_TAG: 3.16.2
   GOSTATSD_TAG: 35.0.0
+  SNYK_TOKEN: ${{ secrets.CAOS_SNYK_TOKEN }}
 
 jobs:
   trivy_scanner:
-    name: Trivy scanner for docker
+    name: Security scanner for docker image
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +30,15 @@ jobs:
       - name: Build image
         run: |
           make build/docker-amd64 BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }} GOSTATSD_TAG=${{ env.GOSTATSD_TAG }}
-      - name: newrelic/nri-statsd
+      
+      - name: Run Snyk to check Docker image for vulnerabilities
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
+        with:
+          image: "newrelic/nri-statsd:test"
+          
+      - name: Run Trivy to check Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: "newrelic/nri-statsd:test"
