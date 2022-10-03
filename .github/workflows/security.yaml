@@ -11,7 +11,7 @@ on:
 
 env:
   BASE_IMAGE_TAG: 3.16.2
-  GOSTATSD_TAG: 35.0.1
+  GOSTATSD_TAG: 35.1.0
 
 jobs:
   trivy_scanner:
@@ -28,7 +28,7 @@ jobs:
 
       - name: Build image
         run: |
-          make build/docker-amd64
+          make build/docker-amd64 BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }} GOSTATSD_TAG=${{ env.GOSTATSD_TAG }}
       - name: newrelic/nri-statsd
         uses: aquasecurity/trivy-action@master
         with:
