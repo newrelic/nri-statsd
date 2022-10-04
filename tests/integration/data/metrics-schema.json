@@ -1,0 +1,164 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "array",
+    "items": [
+      {
+        "type": "object",
+        "properties": {
+          "common": {
+            "type": "object",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "properties": {
+                  "integration.name": {
+                    "type": "string"
+                  },
+                  "integration.version": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "integration.name",
+                  "integration.version"
+                ]
+              },
+              "interval.ms": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "attributes",
+              "interval.ms"
+            ]
+          },
+          "metrics": {
+            "type": "array",
+            "items": [
+              {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "hostname": {
+                        "type": "string"
+                      },
+                      "statsdType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "hostname",
+                      "statsdType"
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "timestamp": {
+                    "type": "integer"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "attributes",
+                  "name",
+                  "timestamp",
+                  "type",
+                  "value"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "hostname": {
+                        "type": "string"
+                      },
+                      "statsdType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "hostname",
+                      "statsdType"
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "timestamp": {
+                    "type": "integer"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "attributes",
+                  "name",
+                  "timestamp",
+                  "type",
+                  "value"
+                ]
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "object",
+                    "properties": {
+                      "hostname": {
+                        "type": "string"
+                      },
+                      "statsdType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "hostname",
+                      "statsdType"
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "timestamp": {
+                    "type": "integer"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "attributes",
+                  "name",
+                  "timestamp",
+                  "type",
+                  "value"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "common",
+          "metrics"
+        ]
+      }
+    ]
+  }
