@@ -37,7 +37,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: |
             BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }}
-            GOSTATSD_TAG=${{ env.GOSTATSD_TAG: 35.0.0 }}
+            GOSTATSD_TAG=${{ env.GOSTATSD_TAG }}
           context: .
           push: true
           tags: |
