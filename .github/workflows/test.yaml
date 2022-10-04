@@ -17,7 +17,7 @@ jobs:
   test:
     name: Integration tests
     # Use macos runner to be able to run different docker images architectures.
-    runs-on: macos-12
+    runs-on: macos-11
     strategy:
       matrix:
         arch: [ amd64, arm64 ]
@@ -27,7 +27,7 @@ jobs:
       - name: Install docker
         run: |
           brew install docker colima
-          colima start
+          colima start --cpu 2 --memory 8 --runtime containerd
 
       - name: Login to DockerHub
         uses: docker/login-action@v2

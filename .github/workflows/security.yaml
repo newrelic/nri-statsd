@@ -13,6 +13,7 @@ env:
   BASE_IMAGE_TAG: 3.16.2
   GOSTATSD_TAG: 35.0.0
   SNYK_TOKEN: ${{ secrets.CAOS_SNYK_TOKEN }}
+  TEST_IMAGE: "newrelic/nri-statsd:test"
 
 jobs:
   trivy_scanner:
@@ -36,12 +37,12 @@ jobs:
         env:
           SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
         with:
-          image: "newrelic/nri-statsd:test"
+          image: ${{ env.TEST_IMAGE }}
           
       - name: Run Trivy to check Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "newrelic/nri-statsd:test"
+          image-ref: ${{ env.TEST_IMAGE }}
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
