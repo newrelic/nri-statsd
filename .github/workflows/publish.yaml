@@ -10,7 +10,7 @@ on:
 
 env:
   BASE_IMAGE_TAG: 3.16.2
-  GOSTATSD_TAG: 35.0.0
+  GOSTATSD_TAG: 35.1.2
 
 jobs:
   push_to_registry:
