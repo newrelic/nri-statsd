@@ -5,6 +5,8 @@ FROM atlassianlabs/gostatsd:$GOSTATSD_TAG as gostatsd
 
 FROM alpine:$BASE_IMAGE_TAG
 
+RUN apk -U upgrade
+
 RUN apk --no-cache add \
     ca-certificates file
 
