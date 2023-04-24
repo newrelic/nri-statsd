@@ -20,7 +20,7 @@ jobs:
     runs-on: macos-11
     strategy:
       matrix:
-        arch: [ amd64, arm64 ]
+        arch: [  arm64, amd64 ]
     steps:
       - uses: actions/checkout@v2
 
