@@ -1,9 +1,9 @@
 PROJECT_WORKSPACE	?= $(CURDIR)
 DOCKER_IMAGE_NAME	?= newrelic/nri-statsd
 DOCKER_IMAGE_TAG	?= test   
-GOSTATSD_TAG		?= 35.1.19
-BASE_IMAGE_TAG		?= 3.17
-TEST_IMAGE_TAG		?= 1.19.8-alpine3.17
+GOSTATSD_TAG		?= 35.2.1
+BASE_IMAGE_TAG		?= 3.18
+TEST_IMAGE_TAG		?= 1.19-alpine3.18
 
 DOCKER_BUILD_CMD	?= docker build --pull \
 					--no-cache \
