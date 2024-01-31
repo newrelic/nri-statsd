@@ -1,6 +1,6 @@
 PROJECT_WORKSPACE	?= $(CURDIR)
 DOCKER_IMAGE_NAME	?= newrelic/nri-statsd
-DOCKER_IMAGE_TAG	?= test   
+DOCKER_IMAGE_TAG	?= test
 GOSTATSD_TAG		?= 36.0.2
 BASE_IMAGE_TAG		?= 3.19
 TEST_IMAGE_TAG		?= 1.21.5-alpine3.19
@@ -45,7 +45,7 @@ build/docker-arm64:
 
 .PHONY : tests-%
 tests-% : export ARCH=$(call buildTargetArch, $@)
-tests-% : 
+tests-% :
 	@printf '\n================================================================\n'
 	@printf 'Target: $@\n'
 	@printf '\n================================================================\n'

@@ -7,7 +7,7 @@ on:
       - master
 
 env:
-  BASE_IMAGE_TAG: 3.19.0
+  BASE_IMAGE_TAG: 3.19.1
   GOSTATSD_TAG: 36.0.2
   SNYK_TOKEN: ${{ secrets.CAOS_SNYK_TOKEN }}
   TEST_IMAGE: "newrelic/nri-statsd:nightly"
