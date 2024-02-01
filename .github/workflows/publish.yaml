@@ -1,7 +1,7 @@
 name: Publish container image
 
 # run this workflow when we create a new releases
-on: 
+on:
   release:
     types:
       - released
@@ -9,14 +9,14 @@ on:
       - '*'
 
 env:
-  BASE_IMAGE_TAG: 3.19.0
+  BASE_IMAGE_TAG: 3.19.1
   GOSTATSD_TAG: 36.0.2
 
 jobs:
   push_to_registry:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout out master 
+      - name: Checkout out master
         uses: actions/checkout@v2
 
       - name: Set up QEMU
