@@ -24,7 +24,7 @@ require (
 	github.com/docker/go-units v0.5.0 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
 	github.com/moby/sys/mount v0.3.3 // indirect
@@ -39,10 +39,10 @@ require (
 	github.com/stretchr/testify v1.8.0
 	github.com/xeipuuv/gojsonschema v1.2.0
 	go.opencensus.io v0.23.0 // indirect
-	golang.org/x/net v0.0.0-20220617184016-355a448f1bc9 // indirect
-	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
-	google.golang.org/genproto v0.0.0-20220617124728-180714bec0ad // indirect
-	google.golang.org/grpc v1.47.0 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
+	golang.org/x/net v0.9.0 // indirect
+	golang.org/x/sys v0.7.0 // indirect
+	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
+	google.golang.org/grpc v1.56.3 // indirect
+	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
