@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.OHAI_DOCKER_HUB_PASSWORD }}
 
       - name: Push to docker hub
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64,linux/arm64
           build-args: |
