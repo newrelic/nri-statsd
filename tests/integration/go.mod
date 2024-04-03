@@ -1,6 +1,6 @@
 module test
 
-go 1.20
+go 1.22.2
 
 require github.com/testcontainers/testcontainers-go v0.14.0
 
