@@ -3,7 +3,7 @@ DOCKER_IMAGE_NAME	?= newrelic/nri-statsd
 DOCKER_IMAGE_TAG	?= test
 GOSTATSD_TAG		?= 36.0.2
 BASE_IMAGE_TAG		?= 3.19
-TEST_IMAGE_TAG		?= 1.21.5-alpine3.19
+TEST_IMAGE_TAG		?= 1.22.2-alpine3.19
 
 DOCKER_BUILD_CMD	?= docker build --pull \
 					--no-cache \
