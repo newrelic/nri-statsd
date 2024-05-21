@@ -1,5 +1,5 @@
 ARG BASE_IMAGE_TAG=3.19.1
-ARG GOSTATSD_TAG=36.0.2
+ARG GOSTATSD_TAG=38.1.0
 
 FROM atlassianlabs/gostatsd:$GOSTATSD_TAG as gostatsd
 
