@@ -9,10 +9,6 @@ on:
     paths-ignore:
       - README.md
 
-env:
-  BASE_IMAGE_TAG: 3.19.1
-  GOSTATSD_TAG: 36.0.2
-
 jobs:
   test:
     name: Integration tests
@@ -36,4 +32,4 @@ jobs:
 
       - name: Running integration tests
         run: |
-          make integration-tests-${{ matrix.arch }} BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }} GOSTATSD_TAG=${{ env.GOSTATSD_TAG }}
+          make integration-tests-${{ matrix.arch }}

@@ -10,8 +10,6 @@ on:
       - README.md
 
 env:
-  BASE_IMAGE_TAG: 3.19.1
-  GOSTATSD_TAG: 36.0.2
   SNYK_TOKEN: ${{ secrets.CAOS_SNYK_TOKEN }}
   TEST_IMAGE: "newrelic/nri-statsd:test"
 
@@ -30,7 +28,7 @@ jobs:
 
       - name: Build image
         run: |
-          make build/docker-amd64 BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }} GOSTATSD_TAG=${{ env.GOSTATSD_TAG }}
+          make build/docker-amd64
 
       - name: Run Snyk to check Docker image for vulnerabilities
         uses: snyk/actions/docker@master
