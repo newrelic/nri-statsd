@@ -9,8 +9,8 @@ on:
       - '*'
 
 env:
-  BASE_IMAGE_TAG: 3.19.1
-  GOSTATSD_TAG: 36.0.2
+  BASE_IMAGE_TAG: 3.20.2
+  GOSTATSD_TAG: 39.1.10
 
 jobs:
   push_to_registry:
