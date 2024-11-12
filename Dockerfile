@@ -1,4 +1,4 @@
-FROM atlassianlabs/gostatsd:36.0.2 as gostatsd
+FROM atlassianlabs/gostatsd:40.0.0 as gostatsd
 
 FROM alpine:3.20.2
 
