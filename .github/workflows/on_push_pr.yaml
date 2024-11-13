@@ -1,0 +1,17 @@
+name: Push/PR
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - renovate/**
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  push-pr:
+    uses: newrelic/coreint-automation/.github/workflows/reusable_push_pr.yaml@v3
+    with:
+      integration: statsd
+    secrets: inherit
