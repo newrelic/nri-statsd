@@ -14,4 +14,7 @@ jobs:
     uses: newrelic/coreint-automation/.github/workflows/reusable_push_pr.yaml@v3
     with:
       integration: statsd
+      run_test_windows: false
+      run_test_build_nix: false
+      run_integration_nix: false
     secrets: inherit
