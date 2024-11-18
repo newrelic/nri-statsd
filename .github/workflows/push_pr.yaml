@@ -19,7 +19,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'tests/integration/go.mod'
-
       - uses: newrelic/newrelic-infra-checkers@v1
         with:
           golangci-lint-config: golangci-lint-limited
@@ -28,6 +27,7 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         with:
           only-new-issues: true
+          working-directory: tests/integration/
 
   integration-test:
     name: 🚧 integration tests
