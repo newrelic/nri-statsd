@@ -28,6 +28,8 @@ jobs:
         with:
           only-new-issues: true
           working-directory: tests/integration/
+      - name: Check if CHANGELOG is valid
+        uses: newrelic/release-toolkit/validate-markdown@v1
 
   integration-test:
     name: 🚧 integration tests
