@@ -9,7 +9,7 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## Unreleased
 
-### features
+### enhancements
 - Intoduced Changelog
 - Introduced automated release pipeline
 
