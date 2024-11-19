@@ -17,6 +17,7 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 - Updated alpine docker tag to v3.20.3
 - Updated atlassianlabs/gostatsd to v40.0.0
 - Updated testcontainers-go to v0.34
+- Updated go version to v1.22.3
 
 ## v2.9.2 - 2024-08-08
 
