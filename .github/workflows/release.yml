@@ -10,6 +10,9 @@ env:
     ORIGINAL_REPO_NAME: "newrelic/nri-statsd"
     DOCKER_PLATFORMS: "linux/amd64,linux/arm64"
     DOCKER_IMAGE_NAME: newrelic/nri-statsd
+    TAG: ${{ github.event.release.tag_name }}
+    VERSION: ""
+    TAG_SUFFIX: ""
 
 jobs:
   integration-tests:
@@ -43,17 +46,16 @@ jobs:
     steps:
         - name: Checkout master
           uses: actions/checkout@v4
+
+        - name: Add pre-release tag suffix
+          if: ${{ github.event.release.prerelease }}
+          run: |
+            echo "TAG_SUFFIX=-pre" >> $GITHUB_ENV
         
         - name: Generate version from tag
           run: |
-            echo "${{ github.event.release.tag_name }}" | grep -E '^v[0-9.]*[0-9]$'
-            IMAGE_VERSION=$(echo "${{ github.event.release.tag_name }}" | sed 's/^v//')
-            echo "IMAGE_VERSION=$IMAGE_VERSION" >> $GITHUB_ENV
-            if ${{ github.event.release.prerelease }}; then
-              echo "DOCKER_IMAGE_TAG=${IMAGE_VERSION}-pre" >> $GITHUB_ENV
-            else
-              echo "DOCKER_IMAGE_TAG=${IMAGE_VERSION}" >> $GITHUB_ENV
-            fi
+            TAG_WITHOUT_V=$(echo "${{ env.TAG }}" | sed 's/^v//')
+            echo "VERSION=$TAG_WITHOUT_V" >> $GITHUB_ENV
         
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v3
@@ -74,7 +76,7 @@ jobs:
             context: .
             push: true
             tags: |
-              ${{ env.DOCKER_IMAGE_NAME }}:${{ github.event.release.tag_name }}
+              ${{ env.DOCKER_IMAGE_NAME }}:${{ env.VERSION }}${{ env.TAG_SUFFIX }}
         
         - name: Push latest tag
           if: ${{ ! github.event.release.prerelease }}
@@ -84,6 +86,13 @@ jobs:
             context: .
             push: true
             tags: ${{ env.DOCKER_IMAGE_NAME }}:latest
+        
+        - name: Update title for successful pre-release
+          if: ${{ github.event.release.prerelease }}
+          env:
+            GH_TOKEN: "${{ secrets.COREINT_BOT_TOKEN }}"
+          run: |
+            gh release edit ${{ env.TAG }} --title "${{ env.TAG }}"
 
   notify-failure:
     if: ${{ always() && failure() }}
