@@ -15,7 +15,7 @@ jobs:
     name: Run static analysis checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'tests/integration/go.mod'
