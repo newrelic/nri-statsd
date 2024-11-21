@@ -7,7 +7,6 @@ on:
       - master
 
 env:
-  SNYK_TOKEN: ${{ secrets.CAOS_SNYK_TOKEN }}
   TEST_IMAGE: "newrelic/nri-statsd:nightly"
   DOCKER_IMAGE_TAG: "nightly"
 
@@ -27,14 +26,6 @@ jobs:
       - name: Build image
         run: |
           make build/docker-amd64 DOCKER_IMAGE_TAG=${{ env.DOCKER_IMAGE_TAG }}
-
-      - name: Run Snyk to check Docker image for vulnerabilities
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
-        with:
-          image: ${{ env.TEST_IMAGE }}
-          args: --file=Dockerfile --severity-threshold=high
 
       - name: Run Trivy to check Docker image for vulnerabilities
         uses: aquasecurity/trivy-action@master
