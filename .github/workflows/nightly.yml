@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: 'Reason for manual trigger'
+        description: 'Manual Trigger To Test The Workflow'
         required: false
         type: string
 

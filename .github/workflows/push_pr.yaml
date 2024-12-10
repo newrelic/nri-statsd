@@ -54,19 +54,3 @@ jobs:
       - name: Running integration tests
         run: |
           make integration-tests-${{ matrix.arch }}
-  
-  testing-nightly:
-    uses: newrelic/coreint-automation/.github/workflows/reusable_nightly.yaml@NR-341878-Use-reusable-workflow-for-docker-image-security-checks
-    secrets:
-      docker_username: ${{ secrets.OHAI_DOCKER_HUB_ID }}
-      docker_password: ${{ secrets.OHAI_DOCKER_HUB_PASSWORD }}
-    with:
-      docker_image: newrelic/nri-statsd
-      docker_tag: nightly
-      target_branches: "master"
-      build_command: |
-        make build/docker-amd64 DOCKER_IMAGE_TAG=nightly
-      setup_qemu: false
-      setup_buildx: false
-      setup_go: false
-      trivy_scan: true
