@@ -8,21 +8,27 @@ on:
 
 jobs:
   container-release:
-    uses: newrelic/coreint-automation/.github/workflows/reusable_image_release.yaml@v3
+    uses: newrelic/coreint-automation/.github/workflows/reusable_image_release.yaml@NR-341876-Make-docker-images-pre-release-uniform
     with:
       original_repo_name: "newrelic/nri-statsd"
-      docker_platforms: "linux/amd64,linux/arm64"
       docker_image_name: "newrelic/nri-statsd"
-      go_version_file: "tests/integration/go.mod"
-      
-      run_integration_tests: true
-      run_nix_unit_tests: false
-      run_windows_unit_tests: false
-      
-      use_build_push_action: true
 
-      use_custom_release: false
-      release_command: "echo 'No custom release command'"
+      docker_platforms: "linux/amd64,linux/arm64"
+
+      go_version_file: "tests/integration/go.mod"
+
+      run_integration_tests: true
+      
+      release_command_sh: |
+        docker buildx build --push --platform=$DOCKER_PLATFORMS \
+          -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
+          .
+        if [[ "${{ github.event.release.prerelease }}" == "false" ]]; then
+          DOCKER_IMAGE_TAG=latest
+          docker buildx build --push --platform=$DOCKER_PLATFORMS \
+            -t $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG \
+            .
+        fi
 
     secrets:
       docker_username: ${{ secrets.OHAI_DOCKER_HUB_ID }}
