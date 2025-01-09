@@ -12,8 +12,9 @@ jobs:
     with:
       original_repo_name: "newrelic/nri-statsd"
       docker_image_name: "newrelic/nri-statsd"
-
-      # docker_platforms: "linux/amd64,linux/arm64"
+      
+      # Cannot use default: base image does not support arm/v7
+      docker_platforms: "linux/amd64,linux/arm64"
 
       go_version_file: "tests/integration/go.mod"
 
