@@ -9,12 +9,6 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## Unreleased
 
-### dependencies
-- Updated crypto library to 0.31.0
-
-### enhancements
-- Moved nightlies and release process to reusable workflows
-
 ## v2.10.0 - 2024-12-11
 
 ### dependencies
