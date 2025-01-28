@@ -18,12 +18,15 @@ jobs:
     secrets:
       docker_username: ${{ secrets.OHAI_DOCKER_HUB_ID }}
       docker_password: ${{ secrets.OHAI_DOCKER_HUB_PASSWORD }}
+      slack_channel: ${{ secrets.COREINT_SLACK_CHANNEL }}
+      slack_token: ${{ secrets.COREINT_SLACK_TOKEN }}
     with:
       docker_image: newrelic/nri-statsd
       docker_tag: nightly
       target_branches: "master"
       build_command: |
-        make build/docker-amd64 DOCKER_IMAGE_TAG=nightly
+        export DOCKER_IMAGE_TAG=nightly
+        make build/docker-amd64
       setup_qemu: false
       setup_buildx: false
       setup_go: false
