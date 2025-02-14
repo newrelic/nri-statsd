@@ -1,6 +1,6 @@
 FROM atlassianlabs/gostatsd:40.0.0 AS gostatsd
 
-FROM alpine:3.20.3
+FROM alpine:3.21.3
 
 RUN apk --no-cache add \
     ca-certificates file
