@@ -9,9 +9,14 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## Unreleased
 
+### enhancements
+- Updated atlassianlabs/gostatsd to v40.0.1
+- Updated testcontainers-go to v0.35
+- Updated go version to v1.23.6
+
 ## v2.10.0 - 2024-12-11
 
-### dependencies
+### ⛓️ Dependencies
 - Updated alpine docker tag to v3.20.3
 - Updated atlassianlabs/gostatsd to v40.0.0
 - Updated testcontainers-go to v0.34
