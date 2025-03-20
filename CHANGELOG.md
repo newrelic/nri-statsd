@@ -16,7 +16,7 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## v2.10.0 - 2024-12-11
 
-### dependencies
+### ⛓️ Dependencies
 - Updated alpine docker tag to v3.20.3
 - Updated atlassianlabs/gostatsd to v40.0.0
 - Updated testcontainers-go to v0.34
