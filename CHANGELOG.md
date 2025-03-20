@@ -9,7 +9,9 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## Unreleased
 
-### enhancements
+## v2.11.0 - 2025-03-20
+
+### 🚀 Enhancements
 - Updated atlassianlabs/gostatsd to v40.0.1
 - Updated testcontainers-go to v0.35
 - Updated go version to v1.23.6
