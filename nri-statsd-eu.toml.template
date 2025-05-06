@@ -87,6 +87,17 @@ backends='newrelic'
 # <base>.Sum
 # <base>.SumSquares
 
+# HTTP server configuration for health checks
+# We're using a custom health check server instead of the built-in one
+# http-servers='health'
+
+# [http.health]
+# address='0.0.0.0:8126'
+# enable-prof=false
+# enable-expvar=false
+# enable-ingestion=false
+# enable-healthcheck=true
+
 # In addition, the following aggregated metrics will be emitted for each configured percentile:
 
 # <base>.Count_XX
@@ -97,7 +108,7 @@ backends='newrelic'
 # <base>.Lower_-XX - for negative only
 
 # These can be controlled through the disabled-sub-metrics configuration section
-# Uncomment below to disable all sub-metrics. 
+# Uncomment below to disable all sub-metrics.
 # You can also set to false only those that you want to send.
 
 # [disabled-sub-metrics]

@@ -54,7 +54,16 @@ EOF
 
 backends='newrelic'
 metrics-addr="${NR_STATSD_METRICS_ADDR}"
-monitoring-port="${NR_MONITORING_PORT}"
+
+# We're using a custom health check server instead of the built-in one
+# http-servers='health'
+
+# [http.health]
+# address='0.0.0.0:${NR_MONITORING_PORT}'
+# enable-prof=false
+# enable-expvar=false
+# enable-ingestion=false
+# enable-healthcheck=true
 
 [newrelic]
 flush-type = "metrics"

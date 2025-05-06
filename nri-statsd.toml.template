@@ -122,6 +122,17 @@ backends='newrelic'
 # lower-pct=true
 # upper-pct=true
 
+# HTTP server configuration for health checks
+# We're using a custom health check server instead of the built-in one
+# http-servers='health'
+
+# [http.health]
+# address='0.0.0.0:8126'
+# enable-prof=false
+# enable-expvar=false
+# enable-ingestion=false
+# enable-healthcheck=true
+
 [newrelic]
 # flush types supported: metrics,  insights, infra. if not defined will try to guess from the address used
 flush-type = 'metrics'

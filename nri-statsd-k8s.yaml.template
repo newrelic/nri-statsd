@@ -83,7 +83,26 @@ data:
     flush-interval='10s'
     statser-type='null'
     log-raw-metric='true'
-    monitoring-port='8126'
+    http-servers='health'
+
+    [http.health]
+    address='0.0.0.0:8126'
+    enable-prof=false
+    enable-expvar=false
+    enable-ingestion=false
+    enable-healthcheck=true
+
+    # Simple health check for AWS LoadBalancer - always returns 200 OK if process is running
+    path-root-response='{"status":"ok","message":"gostatsd is running"}'
+    path-root-handler="healthcheck"
+
+    # Simple health check endpoint - always returns 200 OK if process is running
+    path-healthcheck="/health"
+    path-healthcheck-response='{"status":"ok","message":"gostatsd is running"}'
+
+    # Detailed status endpoint - returns detailed status including New Relic connection
+    path-status="/status"
+    path-status-handler="detailed-status"
 
     [newrelic]
     # flush types supported: metrics,  insights, infra
