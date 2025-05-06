@@ -7,6 +7,7 @@ NR_INSIGHTS_COLLECTOR="${NR_INSIGHTS_COLLECTOR:-insights-collector}"
 NR_INSIGHTS_DOMAIN="newrelic.com"
 NR_METRICS_COLLECTOR="${NR_METRICS_COLLECTOR:-metric-api}"
 NR_METRICS_DOMAIN="newrelic.com"
+NR_MONITORING_PORT="${NR_MONITORING_PORT:-8126}"
 
 if [ ! -z "${NR_EU_REGION}" ]; then
     NR_INSIGHTS_DOMAIN="eu01.nr-data.net"
@@ -53,6 +54,7 @@ EOF
 
 backends='newrelic'
 metrics-addr="${NR_STATSD_METRICS_ADDR}"
+monitoring-port="${NR_MONITORING_PORT}"
 
 [newrelic]
 flush-type = "metrics"

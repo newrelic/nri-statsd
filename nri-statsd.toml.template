@@ -74,6 +74,8 @@ backends='newrelic'
 # timer-histogram-limit=
 # LogRawMetric Print metrics received from network to stdout in JSON format
 # log-raw-metric='false'
+# MonitoringPort TCP port for health checks
+# monitoring-port=8126
 
 # By default, timer metrics will result in aggregated metrics of the form (exact name varies by backend):
 
@@ -97,7 +99,7 @@ backends='newrelic'
 # <base>.Lower_-XX - for negative only
 
 # These can be controlled through the disabled-sub-metrics configuration section
-# Uncomment below to disable all sub-metrics. 
+# Uncomment below to disable all sub-metrics.
 # You can also set to false only those that you want to send.
 
 # [disabled-sub-metrics]

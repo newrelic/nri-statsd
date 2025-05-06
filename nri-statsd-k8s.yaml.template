@@ -24,6 +24,8 @@ spec:
         #   value: <your New Relic account id>
         # - name: NR_API_KEY
         #   value: <your New Relic API key>
+        # - name: NR_MONITORING_PORT
+        #   value: "8126"
         # you can set this to true in order to set the collector to FedRAMP compliant endpoints
         # - name: NR_GOV_COLLECTOR
         #   value: true
@@ -58,6 +60,10 @@ spec:
     port: 8125
     targetPort: 8125
     protocol: UDP
+  - name: monitoring
+    port: 8126
+    targetPort: 8126
+    protocol: TCP
   selector:
     app: newrelic-statsd
 ---
@@ -77,6 +83,7 @@ data:
     flush-interval='10s'
     statser-type='null'
     log-raw-metric='true'
+    monitoring-port='8126'
 
     [newrelic]
     # flush types supported: metrics,  insights, infra

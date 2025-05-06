@@ -17,5 +17,7 @@ docker run -d -it --rm \
   -e NR_ACCOUNT_ID="$NR_ACCOUNT_ID" \
   -e NR_API_KEY="$NR_API_KEY" \
   -e NR_EU_REGION="$NR_EU_REGION" \
+  -e NR_MONITORING_PORT="8126" \
   -p 8125:8125/udp \
+  -p 8126:8126/tcp \
   nri-statsd
