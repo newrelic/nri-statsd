@@ -19,6 +19,21 @@ spec:
       containers:
       - name: newrelic-statsd
         image: newrelic/nri-statsd:latest
+        ports:
+        - containerPort: 8125
+          protocol: UDP
+        - containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
         # env:
         # - name: NR_ACCOUNT_ID
         #   value: <your New Relic account id>
@@ -58,6 +73,10 @@ spec:
     port: 8125
     targetPort: 8125
     protocol: UDP
+  - name: health-check
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
   selector:
     app: newrelic-statsd
 ---
