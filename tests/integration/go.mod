@@ -1,6 +1,6 @@
 module test
 
-go 1.23.6
+go 1.25.3
 
 require github.com/testcontainers/testcontainers-go v0.35.0
 
