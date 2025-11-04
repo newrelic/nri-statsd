@@ -2,7 +2,6 @@ version: "2"
 
 linters:
   enable:
-    - gofmt
     - goimports
     - govet
     - ineffassign
