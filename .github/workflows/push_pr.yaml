@@ -23,7 +23,7 @@ jobs:
         with:
           golangci-lint-config: golangci-lint-limited
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v7
+        uses: golangci/golangci-lint-action@v8
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         with:
           version: v2.6.0
