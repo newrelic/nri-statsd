@@ -2,14 +2,16 @@ FROM atlassianlabs/gostatsd:41.0.3 AS gostatsd
 
 FROM alpine:3.22.2
 
-RUN apk --no-cache add \
+RUN apk update && apk upgrade && \
+    apk --no-cache add \
     ca-certificates file
-
-RUN apk update && apk upgrade
 
 COPY --from=gostatsd /bin/gostatsd /bin/gostatsd
 
 COPY ./nri-statsd.sh .
 COPY ./run-statsd.sh .
+
+# Expose ports for StatsD UDP and HTTP Health Checks
+EXPOSE 8125/udp 8080
 
 ENTRYPOINT ["/nri-statsd.sh"]
