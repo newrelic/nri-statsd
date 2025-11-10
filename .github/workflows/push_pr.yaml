@@ -15,7 +15,7 @@ jobs:
     name: Run static analysis checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: actions/setup-go@v5
         with:
           go-version-file: 'tests/integration/go.mod'
@@ -39,7 +39,7 @@ jobs:
       matrix:
         arch: [  arm64, amd64 ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
