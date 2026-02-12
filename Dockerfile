@@ -1,6 +1,6 @@
-FROM atlassianlabs/gostatsd:40.0.1 AS gostatsd
+FROM atlassianlabs/gostatsd:41.0.4 AS gostatsd
 
-FROM alpine:3.21.3
+FROM alpine:3.23.2
 
 RUN apk update && apk upgrade && \
     apk --no-cache add \

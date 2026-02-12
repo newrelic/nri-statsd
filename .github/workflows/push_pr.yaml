@@ -23,9 +23,10 @@ jobs:
         with:
           golangci-lint-config: golangci-lint-limited
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@v7
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         with:
+          version: v2.6.0
           only-new-issues: true
           working-directory: tests/integration/
       - name: Check if CHANGELOG is valid

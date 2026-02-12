@@ -9,6 +9,13 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## Unreleased
 
+## v2.12.0 - 2025-11-18
+
+### 🛡️ Security notices
+- update atlassianlabs/gostatsd docker tag to v41.0.3
+- update alpine docker tag to v3.22.2
+- update dependency go to v1.25.3
+
 ## v2.11.0 - 2025-03-20
 
 ### 🚀 Enhancements

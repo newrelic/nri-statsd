@@ -1,6 +1,6 @@
 module test
 
-go 1.23.6
+go 1.25.3
 
 require github.com/testcontainers/testcontainers-go v0.35.0
 
@@ -61,7 +61,7 @@ require (
 	github.com/opencontainers/image-spec v1.1.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/xeipuuv/gojsonschema v1.2.0
 	golang.org/x/sys v0.31.0 // indirect
 	google.golang.org/protobuf v1.35.2 // indirect
