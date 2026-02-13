@@ -28,6 +28,10 @@ if [ -z "${NR_STATSD_METRICS_ADDR}" ]; then
     NR_STATSD_METRICS_ADDR=":8125"
 fi
 
+if [ -z "${NR_STATSD_PROFILE_ADDR}" ]; then
+    NR_STATSD_PROFILE_ADDR=":8080"
+fi
+
 if [ -z "${NR_ENDPOINT_ADDR}" ]; then
     NR_ENDPOINT_ADDR="https://${NR_INSIGHTS_COLLECTOR}.${NR_INSIGHTS_DOMAIN}/v1/accounts/${NR_ACCOUNT_ID}/events"
 fi
@@ -53,6 +57,7 @@ EOF
 
 backends='newrelic'
 metrics-addr="${NR_STATSD_METRICS_ADDR}"
+profile="${NR_STATSD_PROFILE_ADDR}"
 
 [newrelic]
 flush-type = "metrics"
