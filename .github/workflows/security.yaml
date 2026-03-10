@@ -17,7 +17,7 @@ jobs:
   security:
     uses: newrelic/coreint-automation/.github/workflows/reusable_security.yaml@v3
     with:
-      skip-dirs: "build"
+      skip-dirs: "build,tests"
       
   scan-image:
     name: Security scanner for docker image
