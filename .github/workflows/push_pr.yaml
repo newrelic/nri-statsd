@@ -26,7 +26,7 @@ jobs:
         uses: golangci/golangci-lint-action@v7
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         with:
-          version: v2.11.2
+          version: v2.11.3
           only-new-issues: true
           working-directory: tests/integration/
       - name: Check if CHANGELOG is valid
