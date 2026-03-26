@@ -36,7 +36,7 @@ jobs:
           make build/docker-amd64
       
       - name: Run Trivy to check Docker image for vulnerabilities
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           image-ref: ${{ env.TEST_IMAGE }}
           format: 'table'
