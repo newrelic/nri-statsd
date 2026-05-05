@@ -12,6 +12,10 @@ on:
         required: false
         type: string
 
+
+permissions:
+  contents: read
+
 jobs:
   nightly:
     uses: newrelic/coreint-automation/.github/workflows/reusable_nightly.yaml@v3
