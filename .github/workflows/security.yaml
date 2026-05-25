@@ -10,6 +10,10 @@ on:
   schedule:
     - cron: "0 3 * * *"
 
+
+permissions:
+  contents: read
+
 env:
   TEST_IMAGE: "newrelic/nri-statsd:test"
 
