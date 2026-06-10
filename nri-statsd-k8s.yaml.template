@@ -27,6 +27,10 @@ spec:
         # you can set this to true in order to set the collector to FedRAMP compliant endpoints
         # - name: NR_GOV_COLLECTOR
         #   value: true
+        # regional endpoints are auto-selected from NR_API_KEY by default
+        # set this to true only to explicitly force EU endpoints
+        # - name: NR_EU_REGION
+        #   value: true
         # you can also use a secret to set the value of the environment variable
         # env:
         # - name: NR_API_KEY

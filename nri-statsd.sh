@@ -8,6 +8,36 @@ NR_INSIGHTS_DOMAIN="newrelic.com"
 NR_METRICS_COLLECTOR="${NR_METRICS_COLLECTOR:-metric-api}"
 NR_METRICS_DOMAIN="newrelic.com"
 
+get_region_from_api_key() {
+    if [ -z "${1}" ]; then
+        return
+    fi
+
+    # Region-aware keys use 'x'. Strip from first x/X onward, then trim numeric sub-region suffix.
+    API_KEY_PREFIX=$(printf '%s' "${1}" | sed 's/[xX].*$//')
+    REGION_FROM_KEY=$(printf '%s' "${API_KEY_PREFIX}" | sed 's/[0-9]*$//' | tr '[:upper:]' '[:lower:]')
+
+    if [ -n "${REGION_FROM_KEY}" ]; then
+        printf '%s' "${REGION_FROM_KEY}"
+    fi
+}
+
+NR_REGION=$(get_region_from_api_key "${NR_API_KEY}")
+
+if [ -n "${NR_REGION}" ]; then
+    case "${NR_REGION}" in
+        eu)
+            NR_INSIGHTS_DOMAIN="eu01.nr-data.net"
+            NR_METRICS_DOMAIN="eu."$NR_METRICS_DOMAIN
+            ;;
+        *)
+            NR_INSIGHTS_DOMAIN="${NR_REGION}.nr-data.net"
+            NR_METRICS_DOMAIN="${NR_REGION}.nr-data.net"
+            ;;
+    esac
+fi
+
+# Backward compatibility: explicit NR_EU_REGION still overrides auto-selection.
 if [ ! -z "${NR_EU_REGION}" ]; then
     NR_INSIGHTS_DOMAIN="eu01.nr-data.net"
     NR_METRICS_DOMAIN="eu."$NR_METRICS_DOMAIN
