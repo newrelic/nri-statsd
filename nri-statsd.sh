@@ -13,7 +13,14 @@ get_region_from_api_key() {
         return
     fi
 
-    # Region-aware keys use 'x'. Strip from first x/X onward, then trim numeric sub-region suffix.
+    # Region-aware keys use 'x'/'X' as a separator (e.g. usxABC, eu01xABC).
+    # Legacy keys (NRAK-, NRAA-, etc.) contain no such separator — skip them.
+    case "${1}" in
+        *[xX]*) ;;
+        *) return ;;
+    esac
+
+    # Strip from first x/X onward, then trim trailing numeric sub-region suffix.
     API_KEY_PREFIX=$(printf '%s' "${1}" | sed 's/[xX].*$//')
     REGION_FROM_KEY=$(printf '%s' "${API_KEY_PREFIX}" | sed 's/[0-9]*$//' | tr '[:upper:]' '[:lower:]')
 
@@ -40,7 +47,7 @@ fi
 # Backward compatibility: explicit NR_EU_REGION still overrides auto-selection.
 if [ ! -z "${NR_EU_REGION}" ]; then
     NR_INSIGHTS_DOMAIN="eu01.nr-data.net"
-    NR_METRICS_DOMAIN="eu."$NR_METRICS_DOMAIN
+    NR_METRICS_DOMAIN="eu.newrelic.com"
 fi
 
 if [ ! -z "${NR_GOV_COLLECTOR}" ]; then
