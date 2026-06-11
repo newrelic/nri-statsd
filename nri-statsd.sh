@@ -33,9 +33,12 @@ NR_REGION=$(get_region_from_api_key "${NR_API_KEY}")
 
 if [ -n "${NR_REGION}" ]; then
     case "${NR_REGION}" in
+        us)
+            # US is the default — newrelic.com endpoints, no override needed
+            ;;
         eu)
             NR_INSIGHTS_DOMAIN="eu01.nr-data.net"
-            NR_METRICS_DOMAIN="eu."$NR_METRICS_DOMAIN
+            NR_METRICS_DOMAIN="eu.newrelic.com"
             ;;
         *)
             NR_INSIGHTS_DOMAIN="${NR_REGION}.nr-data.net"
