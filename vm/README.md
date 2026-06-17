@@ -10,3 +10,6 @@ NR_ACCOUNT_ID=YOUR_ACCOUNT_ID NR_API_KEY=YOUR_API_KEY [NR_EU_REGION=true] vagran
 NR_ACCOUNT_ID=YOUR_ACCOUNT_ID NR_API_KEY=YOUR_API_KEY [NR_EU_REGION=true] vagrant provision  --provision-with run-test
 ```
 
+Regional endpoints are auto-selected from NR_API_KEY by default.
+Set NR_EU_REGION=true only when you want to explicitly force EU endpoints.
+
