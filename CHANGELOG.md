@@ -9,7 +9,9 @@ Unreleased section should follow [Release Toolkit](https://github.com/newrelic/r
 
 ## Unreleased
 
-### enhancement
+## v2.15.0 - 2026-07-02
+
+### 🚀 Enhancements
 - add support for other regions including jp
 
 ## v2.14.0 - 2026-05-04
