@@ -1,5 +1,7 @@
 # Backends Space separated list of backends
 backends='newrelic'
+# HTTP Profiler für Health Checks aktivieren
+profile=':8080'
 #CloudProvider If set, use the cloud provider to retrieve metadata about the sende.
 # cloud-provider='''
 # MaxCloudRequests Maximum number of cloud provider requests per second
@@ -52,6 +54,8 @@ backends='newrelic'
 # cloud-cache-negative-ttl='1mn'
 # MetricsAddr Address on which to listen for metrics
 # metrics-addr=':8125'
+# ProfileAddr Address on which to listen for HTTP profiler/health checks
+# profile=':8080'
 # Namespace Namespace for all metrics
 # namespace=''
 # StatserType Statser type to be used for sending metrics. Set to 'null' to disable internal metrics
