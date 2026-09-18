@@ -21,6 +21,15 @@ docker build -t nri-statsd:$IMAGE_VERSION \
 .
 ```
 
+## Health Checks
+
+The nri-statsd container includes TCP health check endpoints for load balancer integration:
+
+- **Port 8080**: TCP health check endpoint for load balancer monitoring
+- **Port 8125/UDP**: StatsD metrics collection (default)
+
+Configure your load balancer to check `tcp://container:8080` for health status.
+
 ## Running tests
 ```bash
 # for amd64 docker image
